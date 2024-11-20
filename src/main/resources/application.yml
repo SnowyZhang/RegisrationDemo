@@ -9,7 +9,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: create-drop #Spring boot中JPA的一个配置选项，在每次启动应用程序时，都会删除之前的数据表并重新创建新的数据表
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
