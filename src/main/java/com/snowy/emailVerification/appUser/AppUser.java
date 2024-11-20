@@ -11,7 +11,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 @Getter
 @Setter
@@ -31,26 +30,23 @@ public class AppUser implements UserDetails {
             generator = "app_user_sequence"
     )
     private  Long id;
-    private String name;
-    private String username;
+    private String firstname;
+    private String lastname;
     private String email;
     private String password;
     @Enumerated(EnumType.STRING)
     private  AppUserRole appUserRole;
-    private Boolean locked;
+    private Boolean locked = false;
+    private Boolean enabled = false;
 
-    public AppUser(String name, String username, String email, String password, AppUserRole appUserRole, Boolean locked, Boolean enabled) {
+    public AppUser(String firstname, String lastname, String email, String password, AppUserRole appUserRole) {
 
-        this.name = name;
-        this.username = username;
+        this.firstname = firstname;
+        this.lastname = lastname;
         this.email = email;
         this.password = password;
         this.appUserRole = appUserRole;
-        this.locked = locked;
-        this.enabled = enabled;
     }
-
-    private Boolean enabled;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -65,7 +61,15 @@ public class AppUser implements UserDetails {
 
     @Override
     public String getUsername() {
-        return username;
+        return email;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public String getFirstname() {
+        return firstname;
     }
 
     public boolean isAccountNonExpired() {
