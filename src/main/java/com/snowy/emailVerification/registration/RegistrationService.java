@@ -39,11 +39,18 @@ public class RegistrationService {
                         request.getPassword(),
                         AppUserRole.USER
                 ));
+        String link = "http://localhost:8080/api/v1/registration/confirm?token=" + token;
         emailSender.send(request.getEmail(),
-                "点击链接确认邮箱: " +
-                        "http://localhost:8080/api/v1/registration/confirm?token=" + token);
+                "点击链接确认邮箱: " + buildEmail(request.getFirstName(), link));
         return token;
 
+    }
+
+    private String buildEmail(String firstName, String link) {
+        //创建一个html格式的邮件
+        return "<h1>你好，" + firstName + "</h1>"
+                + "<p>请点击下面的链接确认你的邮箱地址:</p>"
+                + "<a href=\"" + link + "\">确认邮箱</a>";
     }
 
     @Transactional

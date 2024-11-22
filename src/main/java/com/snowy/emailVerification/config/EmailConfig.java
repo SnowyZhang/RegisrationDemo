@@ -14,17 +14,20 @@ public class EmailConfig {
     @Bean
     public JavaMailSender javaMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-        mailSender.setHost("localhost");  // SMTP 服务器地址
-        mailSender.setPort(1025);  // SMTP 端口
+        mailSender.setHost("smtp.163.com");  // SMTP 服务器地址
+        mailSender.setPort(465);  // SMTP 端口
 
         // 设置邮件认证信息
-        mailSender.setUsername("hello");
-        mailSender.setPassword("hello");
+        mailSender.setUsername("xxxxx@163.com");
+        mailSender.setPassword("xxxxx");
 
         // 配置邮件属性
         Properties props = mailSender.getJavaMailProperties();
         props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.ssl.enable", "false");  // 启用SSL加密
+        props.put("mail.smtp.ssl.enable", "true");  // 启用SSL加密
+        props.put("mail.smtp.starttls.enable", "true");  // 启用TLS加密
+        props.put("mail.debug", "true");
+
 
         return mailSender;
     }

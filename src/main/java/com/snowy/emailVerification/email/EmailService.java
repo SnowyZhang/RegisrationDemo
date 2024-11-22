@@ -29,7 +29,7 @@ public class EmailService implements EmailSender {
             helper.setText(email, true);
             helper.setTo(to);
             helper.setSubject("确认您的邮箱");
-            helper.setFrom("hello@snowymail");
+            helper.setFrom("xxxxx@163.com");
             mailSender.send(mimeMessage);
         }catch (MessagingException e){
             LOGGER.error("failed to send email", e);
